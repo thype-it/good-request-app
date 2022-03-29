@@ -3,6 +3,10 @@ import { Routes, Route} from "react-router-dom";
 import {createStore} from "little-state-machine";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
+//general components
+import TheHeader from "./components/genreal/TheHeader"
+import TheFooter from "./components/genreal/TheFooter"
+
 //styled components
 import {MyAside, MyView} from "./components/MyStyled.js";
 
@@ -30,7 +34,6 @@ createStore({
   }
 });
 
-// routes to views
 const routes = [
   {path: '/', Element: UserChoice },
   {path: '/UserInfo', Element: UserInfo},
@@ -43,8 +46,13 @@ function App() {
   return (
    <div className='App'>
 
-      <main className='View'>
+      <nav>
+        <div className='container'>
+          <TheHeader/>
+        </div>
+      </nav>
 
+      <main className='View'>
           <MyView>
             <Routes >
               {routes.map(({path, Element}) => (
@@ -65,12 +73,14 @@ function App() {
               ))}
             </Routes>
           </MyView>
-
         <MyAside>
           <img src={asideImg}/>
         </MyAside>
-
       </main>
+
+      <footer className='container'>
+          <TheFooter/>
+      </footer>
 
    </div>
   );
