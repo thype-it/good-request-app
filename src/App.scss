@@ -1,38 +1,278 @@
-.App {
-  text-align: center;
+//THEME STYLES
+
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@600;700&family=Public+Sans:wght@400;600;800&display=swap');
+
+//vars
+$width: 1050px;
+$content-width: 950px;
+
+$color-text: black;
+$color-text-light: #9F9F9F;
+$color-button: #F3E2D9;
+$bg-color: #CD8A64;
+$bg-gradient: linear-gradient(115.41deg, #CD8A64 -1.77%, #C4794F 73.03%);
+@mixin bg-colors {
+  background: $bg-gradient;
+  background-color: $bg-color;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+@mixin flex-center {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+@mixin active {
+  @include bg-colors;
   color: white;
+  transition: .4s;
 }
 
-.App-link {
-  color: #61dafb;
+//general theme
+.App {
+  min-height: 100vh;
+  background-color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.container {
+  max-width: $width;
+  margin: 0 auto;
+}
+
+.View {
+  display: flex;
+  max-width: $content-width;
+  margin: 0 auto;
+  margin-bottom: 5em;
+}
+
+body {
+  color: $color-text;
+  font-family: 'Public Sans', sans-serif;
+}
+
+.heading {
+  font-size: 3em;
+  line-height: 1.1em;
+  margin-bottom: .7em;
+  font-weight: 700;
+  font-family: 'Hind', sans-serif;
+}
+
+.title {
+  margin-bottom: 0.5em;
+  font-size: 0.8em;
+  font-weight: 800;
+}
+
+small {
+  font-weight: 600;
+}
+
+.button {
+  background-color: $color-button;
+  font-weight: 600;
+}
+
+.error {
+  margin: .3em 0;
+  color: red;
+}
+
+.light {
+  color: $color-text-light;
+}
+
+nav {
+  padding: .5em 0;
+  border-bottom: 1px solid $color-text-light;
+  margin-bottom: 1em;
+  color: $color-text-light;
+}
+
+footer {
+  border-top: 1px solid $color-text-light;
+  padding: 4em 0;
+  padding-top: 6em;
+  & > *, & > * > div:first-child {
+    align-items: flex-start !important;
   }
-  to {
-    transform: rotate(360deg);
+  .heading {
+    font-size: 2.2em;
+    margin: 0;
   }
+  .title {
+    margin-top: 0;
+    margin-bottom: 2em;
+  }
+  p {
+    color: $color-text-light;
+  }
+}
+
+//forms
+
+input, select {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  padding-top: 30px;
+  border: 1px solid $color-text-light;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+}
+
+input {
+  transition: .2s;
+  font-size: 0.92em;
+  &[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+  }
+  &[type="submit"] {
+    background: gray;
+    color: white;
+    box-shadow: 0px 15px 45px 0px rgb(0 0 0 / 24%);
+    font-weight: 600;
+    &:hover, &:focus {
+      background-color: lighten(gray, 15%);
+    }
+    &.active {
+      @include active;
+    }
+  }
+  &:focus, &:active {
+    border-color: $bg-color;
+  }
+}
+
+select, ::placeholder {
+  font-weight: 400;
+  color: $color-text-light;
+}
+
+select {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 2em;
+}
+
+option {
+  color: $color-text;
+}
+
+label {
+  display: block;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  &:last-of-type{
+    margin-bottom: 0;
+  }
+  span {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    font-weight: 600;
+    font-size: .9em;
+  }
+}
+
+.control span {
+  font-weight: 400;
+  color: $color-text-light;
+}
+
+//choice
+.contribution {
+  div {
+    border: 1px solid $bg-color;
+    &:hover, &:focus {
+      background-color: lighten($bg-color, 35%);
+    }
+  }
+  & .active {
+    @include active;
+    box-shadow: 0px 15px 45px 0px rgb(0 0 0 / 24%);
+  }
+}
+
+.contributionAmount {
+  @include flex-center;
+  flex-direction: row;
+  border: 1px solid $color-text-light;
+  border-radius: 8px;
+  min-width: 25px;
+  padding: 0 15px;
+  height: 50px;
+  &:hover, &:focus {
+    background-color: lighten($bg-color, 35%);
+    &.special input {
+      background-color: lighten($bg-color, 35%);
+    }
+  }
+  &.active {
+    @include active;
+    &.special input {
+      @include active;
+      border-color: white;
+    }
+  }
+  span {
+    position: static;
+  }
+  &.special {
+    position: relative;
+    width: 81px;
+    input {
+      border: none;
+      padding: 0;
+      display: inline-block;
+      border-bottom: 1px solid $color-text-light;
+      border-radius: 0;
+      &[type="radio"]{
+        width: 0;
+      }
+    }
+    span {
+      margin-left: 7px;
+      display: inline-block;
+    }
+  }
+}
+
+//animations
+
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.page-enter {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-exit {
+  opacity: 0,8;
+  transform: scale(1);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
 }
