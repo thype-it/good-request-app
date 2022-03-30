@@ -3,10 +3,10 @@ import './fancyCheckbox.scss';
 
 const FancyCheckbox = ({text, required}) => {
   return (
-    <label class="control control-checkbox">
+    <label className="control control-checkbox">
         <span>{text}</span>
         <input type="checkbox" required = {required? true : false} />
-    <div class="control_indicator"></div>
+    <div className="control_indicator"></div>
     </label>
   )
 }

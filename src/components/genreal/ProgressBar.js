@@ -31,9 +31,9 @@ const MyProgress = styled.div`
 const ProgressBar = ({activeEl}) => {
   return (
     <MyProgress className='ProgressBar'>
-        <div className={activeEl == 1 && 'active' }></div>
-        <div className={activeEl == 2 && 'active' }></div>
-        <div className={activeEl == 3 && 'active' }></div>
+        <div className={activeEl == 1 ? 'active' : null }></div>
+        <div className={activeEl == 2 ? 'active' : null }></div>
+        <div className={activeEl == 3 ? 'active' : null }></div>
     </MyProgress>
   )
 }
