@@ -43,8 +43,8 @@ $bg-gradient: linear-gradient(115.41deg, #CD8A64 -1.77%, #C4794F 73.03%);
 .View {
   display: flex;
   max-width: $content-width;
-  margin: 0 auto;
-  margin-bottom: 5em;
+  margin: 5em auto;
+  margin-bottom: 10em;
 }
 
 body {
@@ -82,6 +82,15 @@ small {
 
 .light {
   color: $color-text-light;
+}
+
+.ProgressBar {
+  & > * {
+    background: $color-text-light;
+  }
+  .active {
+    background: $bg-color;
+  }
 }
 
 nav {

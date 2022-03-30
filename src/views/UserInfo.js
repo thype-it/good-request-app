@@ -9,6 +9,7 @@ import NumberInfo from "../components/form/NumberInfo.js";
 
 //styled components
 import { MyForm, MyButton, MySubmit, MyRow } from "../components/MyStyled.js";
+import ProgressBar from "../components/genreal/ProgressBar.js";
 
 const UserInfo = props => {
         
@@ -38,6 +39,7 @@ const UserInfo = props => {
     return (
 
     <>
+        <ProgressBar activeEl={2}/>
         <h2 className="heading">Potrebujeme od Vás zopár informácií</h2>
         <MyForm onSubmit={handleSubmit(onSubmit)} onClick={handleToggle}>
 

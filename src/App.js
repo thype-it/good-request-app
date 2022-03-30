@@ -54,6 +54,7 @@ function App() {
 
       <main className='View'>
           <MyView>
+            
             <Routes >
               {routes.map(({path, Element}) => (
                 <Route key={path} exact path={path} element={

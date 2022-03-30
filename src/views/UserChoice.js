@@ -11,6 +11,7 @@ import AmountChoice from "../components/User/AmountChoice.js";
 
 //styled components
 import {MySubmit, MyForm, MyRow} from "../components/MyStyled.js";
+import ProgressBar from "../components/genreal/ProgressBar.js";
 
 //component
 const UserChoice = props => {
@@ -43,6 +44,7 @@ const UserChoice = props => {
     return (
 
         <>
+             <ProgressBar activeEl={1}/>
             <h2 className="heading">Vyberte si možnosť, ako chcete pomôcť</h2>
             <ContributionChoice ContributionClick={handleContributionClick} />
             <MyForm onSubmit={handleSubmit(onSubmit)} onClick={handleToggle} className="choice">

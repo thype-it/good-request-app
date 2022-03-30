@@ -9,6 +9,7 @@ import FancyCheckbox from "../components/form/FancyCheckbox.js";
 
 //styled components
 import {MyButton, MySubmit, MyForm, MyRow} from "../components/MyStyled.js";
+import ProgressBar from "../components/genreal/ProgressBar.js";
 
 const Info = styled.div`
     margin-bottom: 1em;
@@ -64,6 +65,7 @@ const UserCheck = props => {
     return (
 
         <>
+            <ProgressBar activeEl={3}/>
 
             <h2 className="heading">Skontrolujte si zadané údaje</h2>
             
