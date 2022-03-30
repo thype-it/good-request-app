@@ -81,7 +81,7 @@ const AmountChoice = ({register, title, setValue}) => {
 
             <input 
             {...register("customValue", {
-              required: {checked},
+              required: checked,
               pattern: {
                 value: /^[1-9][0-9]*$/,
                 message: "Číslo sa nesmie začínať nulou"
