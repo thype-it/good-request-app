@@ -15,23 +15,25 @@ const NumInput = styled.input`
     padding-left: 83px;
 `;
 
-const NumberInfo = ({register, title, textClass}) => {
+const NumberInfo = ({register, title, textClass, onCountryChange}) => {
 
     //template functions
     const [otherNum, setNum] = useState(false);
     const switchNum = () => {setNum(!otherNum)};
 
+    onCountryChange(otherNum? "+420": "+421")
+
   return (
     <>
         <span>{title}</span>
         <NumWrapper onClick={switchNum} className={textClass}>
-            {otherNum? <CountryNum code="cz" /> : <CountryNum code="sk" />}
+            <CountryNum  code = {otherNum? "cz": "sk"}  />
         </NumWrapper>
         <NumInput 
         {...register("phone",{
             pattern: {
             value: /^(9)[0-9]{8}$/,
-            message: "Číslo si prosím skontrolujte. Čísla v medzinárodnom formáte sa píšu bez 0 na začiatku. Napr. 905 123 456"
+            message: "Číslo si prosím skontrolujte. Čísla v medzinárodnom formáte sa píšu bez 0 na začiatku. Napr. 905123456"
             }
         })}
         type="tel" name='phone'

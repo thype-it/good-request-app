@@ -20,6 +20,7 @@ const UserInfo = props => {
     });
     const navigate = useNavigate(); // router navigation
     const onSubmit = data => {
+        data.countryCode = countryCode; //update country phone number code 
         actions.updateAction(data); // update data object with form values
         navigate('/UserCheck'); //navigate to next view
     }
@@ -29,6 +30,13 @@ const UserInfo = props => {
     const handleToggle = () => {
         setActive(true);
     };
+
+    //country code
+
+    const [countryCode, setCountryCode] = useState("+421");
+    const getCountryCode = (data) => {
+        setCountryCode(data)
+    }
 
     //click back
     const handleBack = () => {
@@ -92,7 +100,7 @@ const UserInfo = props => {
             </label>
 
             <label>
-                <NumberInfo register={register} title="Telefónne číslo" textClass="light"/>
+                <NumberInfo register={register} title="Telefónne číslo" textClass="light" onCountryChange={getCountryCode}/>
             </label>
             <p className="error">{errors.phone?.message}</p>
 

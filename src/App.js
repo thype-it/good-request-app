@@ -28,6 +28,7 @@ createStore({
     email: "",
     phone: "",
     value: "",
+    countryCode: "",
     customValue: null,
     shelterID: null,
     helpOne: true 

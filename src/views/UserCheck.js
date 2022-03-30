@@ -29,7 +29,8 @@ const UserCheck = props => {
         value, 
         customValue, 
         shelterID, 
-        phone, 
+        phone,
+        countryCode, 
         helpOne 
     } = state.yourDetails;
 
@@ -105,7 +106,7 @@ const UserCheck = props => {
             {phone?
                 <Info>
                     <h4 className="title">Telefónne číslo</h4>
-                    <p>{phone}</p>
+                    <p>{countryCode} {phone}</p>
                 </Info> : null
             }
    
