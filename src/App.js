@@ -1,6 +1,5 @@
 import './App.scss';
 import { Routes, Route} from "react-router-dom";
-import {createStore} from "little-state-machine";
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 //general components
@@ -19,21 +18,6 @@ import UserInfo from './views/UserInfo';
 import UserCheck from './views/UserCheck';
 import UserSuccess from './views/UserSuccess';
 import NoMatch from './views/NoMatch';
-
-//store
-createStore({
-  yourDetails: {
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    value: "",
-    countryCode: "",
-    customValue: null,
-    shelterID: null,
-    helpOne: true 
-  }
-});
 
 const routes = [
   {path: '/', Element: UserChoice },

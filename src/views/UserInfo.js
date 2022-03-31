@@ -1,8 +1,15 @@
 import React ,{ useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useStateMachine } from "little-state-machine";
-import updateAction from './../updateAction.js';
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+    chooseFirstName,
+    chooseLastName,
+    chooseEmail,
+    choosePhone,
+    chooseCountryCode
+} from '../redux-state/yourDetailsSlice'
 
 //children
 import NumberInfo from "../components/form/NumberInfo.js";
@@ -12,17 +19,29 @@ import { MyForm, MyButton, MySubmit, MyRow } from "../components/MyStyled.js";
 import ProgressBar from "../components/genreal/ProgressBar.js";
 
 const UserInfo = props => {
-        
-    //handle submit
-    const { actions, state } = useStateMachine({updateAction}); //load current state, initiate update action
-    const { register, formState: { errors }, handleSubmit } = useForm({
-        defaultValues: state.yourDetails // connect form with data object
-    });
+
+    const dispatch = useDispatch(); //updating store
     const navigate = useNavigate(); // router navigation
+    //store values
+    const firstName = useSelector(state => state.firstName,);
+    const lastName = useSelector(state => state.lastName,);
+    const email = useSelector(state => state.email,);
+    const phone = useSelector(state => state.phone,);
+    //register to hook
+    const { register, formState: { errors }, handleSubmit } = useForm({
+        defaultValues: { firstName, lastName, email, phone } // connect form with data object
+    });
+
+    //handle submit
     const onSubmit = data => {
-        data.countryCode = countryCode; //update country phone number code 
-        actions.updateAction(data); // update data object with form values
-        navigate('/UserCheck'); //navigate to next view
+        //set values to store
+        dispatch(chooseFirstName(data.firstName))
+        dispatch(chooseLastName(data.lastName))
+        dispatch(chooseEmail(data.email))
+        dispatch(choosePhone(data.phone))
+        dispatch(chooseCountryCode(countryCode))
+        //navigate to next view
+        navigate('/UserCheck'); 
     }
 
     //highlight button
@@ -32,7 +51,6 @@ const UserInfo = props => {
     };
 
     //country code
-
     const [countryCode, setCountryCode] = useState("+421");
     const getCountryCode = (data) => {
         setCountryCode(data)

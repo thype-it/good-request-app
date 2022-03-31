@@ -1,6 +1,6 @@
 import React from "react";
-import { useStateMachine } from "little-state-machine";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -21,7 +21,7 @@ const Info = styled.div`
 //template
 const UserCheck = props => {
 
-    const { state } = useStateMachine();
+    const state  = useSelector( state => state);
     const { 
         firstName, 
         lastName, 
@@ -32,7 +32,7 @@ const UserCheck = props => {
         phone,
         countryCode, 
         helpOne 
-    } = state.yourDetails;
+    } = state;
 
     const navigate = useNavigate();
 

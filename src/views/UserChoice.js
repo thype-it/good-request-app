@@ -1,8 +1,14 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useStateMachine } from "little-state-machine";
-import updateAction from './../updateAction.js';
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+    chooseValue,
+    chooseCustomValue,
+    chooseShelterID,
+    chooseHelpOne,
+} from '../redux-state/yourDetailsSlice'
 
 //components
 import ContributionChoice from "../components/User/ContributionChoice.js";
@@ -16,17 +22,25 @@ import ProgressBar from "../components/genreal/ProgressBar.js";
 //component
 const UserChoice = props => {
 
-    // handle form and global store state
-    const { actions, state } = useStateMachine({updateAction}); //load current state, initiate update action
-    const { register, formState: { errors }, handleSubmit, setValue } = useForm({
-        defaultValues: state.yourDetails // connect form with data object
-    });
+    const dispatch = useDispatch(); //updating store
     const navigate = useNavigate(); // router navigation
+    //store values
+    const value = useSelector(state => state.value);
+    const customValue = useSelector(state => state.customValue);
+    const shelterID = useSelector(state => state.shelterID);
+    //register to hook
+    const { register, formState: { errors }, handleSubmit, setValue } = useForm({
+        defaultValues: { value, customValue, shelterID} // connect form with data object
+    });
+    //handle submit
     const onSubmit = data => {
-        data.helpOne = shelters;
-        actions.updateAction(data); // update data object with form values
-       navigate('/UserInfo'); //navigate to next view
-       
+        //set values to store
+        dispatch(chooseValue(data.value))
+        dispatch(chooseCustomValue(data.customValue))
+        dispatch(chooseShelterID(data.shelterID))
+        dispatch(chooseHelpOne(shelters))
+        //navigate to next view
+        navigate('/UserInfo'); 
     }
     //highlight button
     const [isActive, setActive] = useState(false);
