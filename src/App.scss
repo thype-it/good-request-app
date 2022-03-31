@@ -300,6 +300,9 @@ label {
     footer.container {
       padding: 1.5em 0;
       width: 95%;
+      .title {
+        margin-bottom: .8em;
+      }
       & > *, & >* >*{
         width: 100%;
         flex-direction: column;
@@ -314,6 +317,9 @@ label {
             margin: 0;
             margin-bottom: .7em;
             max-width: none;
+            min-height: 0;
+            align-items: center;
+            text-align: center;
           }
 
         }

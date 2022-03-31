@@ -20,7 +20,7 @@ export const MyRow = styled.div`
 `;
 
 export const MyColumn = styled.div`
-    dispplay: flex:
+    display: flex;
     flex-direction: column;
     margin-right: 1em;
     max-width: ${props => props.maxWidth? props.maxWidth : null};
