@@ -75,6 +75,10 @@ const UserInfo = props => {
                 <span>Meno</span>
                 <input
                 {...register ("firstName",{
+                    pattern: {
+                        value: /[^\x00-\x7F]+/,
+                        message: "Meno nemôže obsahovať číslice a špeciálne znaky"
+                    },                   
                     minLength:{
                         value: 2,
                         message: "Meno musí obshahovať apoň dva znaky"
@@ -85,12 +89,16 @@ const UserInfo = props => {
                 />
                 <p className="error">{errors.firstName?.message}</p>
             </label>
-
+            
             <label>
                 <span>Priezvisko</span>
                 <input
                 {...register ("lastName",{
                     required: "Vyplňte prosím Vaše priezvisko",
+                    pattern: {
+                        value: /^([^0-9|<>{}[:"'!?()$%^\.\/<>@#&*\-\_=+\\\]\[]*)$/,
+                        message: "Priezvisko nemôže obsahovať číslice a špeciálne znaky"
+                    },
                     minLength:{
                         value: 2,
                         message: "Meno musí obshahovať apoň dva znaky"

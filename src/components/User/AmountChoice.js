@@ -13,14 +13,15 @@ const AllAmounts = styled.div`
   }
 `;
 
-const AmountChoice = ({register, title, setValue}) => {
+//setting contribution values
+const amounts = ["5", "10", "20", "30","50", "100"]; 
+const idList = [];
+amounts.forEach((e,i) => {
+  idList.push({id: ++i})
+});
+idList.push({id: amounts.length+1})
 
-  const amounts = ["5", "10", "20", "30","50", "100"]; //contribution values
-  const idList = [];
-  amounts.forEach((e,i) => {
-    idList.push({id: ++i})
-  });
-  idList.push({id: amounts.length+1})
+const AmountChoice = ({register, title, setValue}) => {
 
   //handle selection 
   const [isActive, setActive] = useState({
@@ -39,7 +40,6 @@ const AmountChoice = ({register, title, setValue}) => {
       return "contributionAmount"
     }
   }
-
 
   // handle custom amount
   const [checked, setChecked] = useState(false);
@@ -80,16 +80,19 @@ const AmountChoice = ({register, title, setValue}) => {
             onChange = {()=>{}}
             />
 
-            <input 
+            <input
             {...register("customValue", {
-              required: checked,
+              required: {
+                value: checked,
+                message:"Zvoľte výšku príspevku"
+              },
               pattern: {
                 value: /^[1-9][0-9]*$/,
                 message: "Číslo sa nesmie začínať nulou"
               },
               min: {
                 value: 5,
-                message: "Minimálna výška príspevku je 5€"
+                message: "Minimálna výška príspevku je 5 €"
               }
             })}
             name="customValue"
