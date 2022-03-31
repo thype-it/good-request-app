@@ -90,7 +90,7 @@ const UserInfo = props => {
                 <span>Priezvisko</span>
                 <input
                 {...register ("lastName",{
-                    required: "Vyplňte porsím Vaše priezvisko",
+                    required: "Vyplňte prosím Vaše priezvisko",
                     minLength:{
                         value: 2,
                         message: "Meno musí obshahovať apoň dva znaky"
@@ -122,7 +122,7 @@ const UserInfo = props => {
             </label>
             <p className="error">{errors.phone?.message}</p>
 
-            <MyRow>
+            <MyRow className="buttons-row">
                 <MyButton className="button" onClick={handleBack}>Späť</MyButton>
                 <MySubmit type="submit" className={isActive ? "active" : null} value = "Pokračovať"/>
             </MyRow>

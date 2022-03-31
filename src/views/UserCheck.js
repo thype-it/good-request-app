@@ -112,7 +112,7 @@ const UserCheck = props => {
    
             <MyForm onSubmit={handleSubmit}>
                 <FancyCheckbox required text="Súhlasím so spracovaním mojich osobných údajov"/>
-                <MyRow>
+                <MyRow className="buttons-row">
                     <MyButton className="button" onClick={handleBack}>Späť</MyButton>
                     <MySubmit type="submit" value="Odoslať formulár"/>
                 </MyRow>

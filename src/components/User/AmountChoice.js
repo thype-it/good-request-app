@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const AllAmounts = styled.div`
   display:flex;
   width: 100%;
+  flex-wrap: wrap;
   & > *{
     margin-right: .8em;
     &:last-of-type {

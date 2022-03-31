@@ -71,7 +71,7 @@ const UserChoice = props => {
                 <AmountChoice register={register} setValue={setValue}/>
                 <p className="error">{errors.shelterID?.message}</p>
                 <p className="error">{errors.value?.message}{errors.customValue?.message}</p>
-                <MyRow singleChild>
+                <MyRow singleChild  className="buttons-row">
                     <MySubmit type="submit" className={isActive ? "active" : null} value = "Pokračovať"/>
                 </MyRow>
             </MyForm>

@@ -3,7 +3,6 @@ import styled from "styled-components";
 //general
 
 export const MyView = styled.div`
-    backround-color: green;
     width: 65%;
     margin-right: 70px;
     position: relative;

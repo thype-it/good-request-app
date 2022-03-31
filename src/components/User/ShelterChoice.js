@@ -21,12 +21,12 @@ const ShelterChoice = ({register, require, title}) => {
             </MyRow>
             <label>
                 <span>Útulok</span>
-                <select defaultValue={0} 
+                <select defaultValue={""} 
                 {...register ("shelterID", {required: {
                     value: require,
                     message: "Ktorému útulku si želáte prispieť ? Vyberte zo zoznamu"
                 }})}>
-                    <option value={0} disabled >Vyberte útulok zo zoznamu</option>
+                    <option value={""} disabled >Vyberte útulok zo zoznamu</option>
                     {
                         sheltersList.map((e, i) => 
                             <option value={`${e.id},${e.name}`} key={i}>{e.name}</option>

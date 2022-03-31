@@ -38,8 +38,7 @@ function App() {
       </nav>
 
       <main className='View'>
-          <MyView>
-            
+          <MyView className='content'>
             <Routes >
               {routes.map(({path, Element}) => (
                 <Route key={path} exact path={path} element={
