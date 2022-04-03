@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as FB } from "../../assets/icons/facebook.svg";
 import { ReactComponent as Insta } from "../../assets/icons/instagram.svg";
@@ -18,8 +19,13 @@ const Socials = styled.div`
 
 const TheHeader = () => {
 
+    const navigate = useNavigate();
+    //click error
+    const handleClick = () => {
+        navigate('/404');
+    }
     return (
-        <MyRow>
+        <MyRow onClick={handleClick}>
             <p>Nadácia Good Boy</p>
             <Socials>
                 <FB/><Insta/>

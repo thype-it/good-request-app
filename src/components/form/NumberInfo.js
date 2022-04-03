@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 
 //children
@@ -21,7 +21,10 @@ const NumberInfo = ({register, title, textClass, onCountryChange}) => {
     const [otherNum, setNum] = useState(false);
     const switchNum = () => {setNum(!otherNum)};
 
-    onCountryChange(otherNum? "+420": "+421")
+    //prevent component rerendering 
+    useEffect(() =>{
+        onCountryChange(otherNum? "+420": "+421")
+    }, [otherNum])
 
   return (
     <>

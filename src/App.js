@@ -41,7 +41,7 @@ function App() {
           <MyView className='content'>
             <Routes >
               {routes.map(({path, Element}) => (
-                <Route key={path} exact path={path} element={
+                <Route key={path} path={path} element={
                   <TransitionGroup>
                     <CSSTransition
                       timeout={300}
