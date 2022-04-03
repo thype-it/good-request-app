@@ -90,12 +90,13 @@ const UserInfo = props => {
                 })}
                 placeholder="Zadajte Vaše meno"
                 name="firstName"
+                autoFocus
                 />
                 <p className="error">{errors.firstName?.message}</p>
             </label>
             
             <label>
-                <span>Priezvisko</span>
+                <span>Priezvisko*</span>
                 <input
                 {...register ("lastName",{
                     required: "Vyplňte prosím Vaše priezvisko",
@@ -119,12 +120,12 @@ const UserInfo = props => {
             </label>
 
             <label>
-                <span>E-mailová adresa</span>
+                <span>E-mailová adresa*</span>
                 <input
                 {...register ("email", {
                     required: "Zadajte Váš e-mail",
                     pattern: {
-                        value: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+                        value: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|sk|cz|online|web|game|com|hu|at|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/,
                         message: "Nesprávny formát emailovej adresy"
                     }
                 })}

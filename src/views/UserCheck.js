@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import axios from "axios";
+import { useForm } from "react-hook-form";
 
 //children
 import FancyCheckbox from "../components/form/FancyCheckbox.js";
@@ -16,11 +17,14 @@ const Info = styled.div`
     &:last-of-type {
         margin-bottom: 2.7em;
     }
-`
+`;
 
 //template
 const UserCheck = props => {
 
+    const { register, formState: { errors }, handleSubmit } = useForm();
+
+    //deconstruct global state to vars
     const state  = useSelector( state => state);
     const { 
         firstName, 
@@ -42,17 +46,7 @@ const UserCheck = props => {
     }
 
     // create new contribution
-    const handleSubmit = (e) => {
-
-        console.log(state);
-        console.log({
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            phone:phone? "0" + phone : null,
-            value: value || customValue,
-            shelterID: shelterID? shelterID.split(',')[0] : null
-        });
+    const onSubmit = (e) => {
 
         e.preventDefault();
 
@@ -61,18 +55,19 @@ const UserCheck = props => {
             lastName: lastName,
             email: email,
             phone:phone? "0" + phone : null,
-            value: value || customValue,
+            value: customValue? customValue: value,
             shelterID: shelterID? shelterID.split(',')[0] : null
           })
           .then(function (response) {
             navigate('/UserSuccess') 
           })
           .catch(function (error) {
-            console.log(error);
-            alert("Niečo sa pokazilo")
+            console.log(error.response.data.messages[0]);
+            alert("Niečo sa pokazilo, skontrolujte si osobné údaje a správnosť zadaného emailu.")
           });
     }
 
+    //template logic
     return (
 
         <>
@@ -102,7 +97,7 @@ const UserCheck = props => {
 
 
             <Info>
-                <h4 className="title">Meno a priezvisko</h4>
+                <h4 className="title">{firstName? "Meno a priezvisko" : "Priezvisko"}</h4>
                 <p>{firstName} {lastName}</p>
             </Info>
         
@@ -120,8 +115,9 @@ const UserCheck = props => {
                 </Info> : null
             }
    
-            <MyForm onSubmit={handleSubmit}>
-                <FancyCheckbox required text="Súhlasím so spracovaním mojich osobných údajov"/>
+            <MyForm onSubmit={handleSubmit(onSubmit)}>
+                <FancyCheckbox text="Súhlasím so spracovaním mojich osobných údajov" register={register}/>
+                 <p className="error">{errors.gdpr?.message}</p>
                 <MyRow className="buttons-row">
                     <MyButton className="button" onClick={handleBack}>Späť</MyButton>
                     <MySubmit type="submit" value="Odoslať formulár"/>
