@@ -33,7 +33,7 @@ const NumberInfo = ({register, title, textClass, onCountryChange}) => {
         {...register("phone",{
             pattern: {
             value: /^(9)[0-9]{8}$/,
-            message: "Číslo si prosím skontrolujte. Čísla v medzinárodnom formáte sa píšu bez 0 na začiatku. Napr. 905123456"
+            message: "Číslo si prosím skontrolujte. Čísla v medzinárodnom formáte sa píšu bez 0 na začiatku a bez medzier. Napr. 905123456"
             }
         })}
         type="tel" name='phone'

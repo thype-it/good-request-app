@@ -82,6 +82,10 @@ const UserInfo = props => {
                     minLength:{
                         value: 2,
                         message: "Meno musí obshahovať apoň dva znaky"
+                    },
+                    maxLength:{
+                        value: 20,
+                        message: "Meno môže obsahovať maximálne 20 znakov"
                     }
                 })}
                 placeholder="Zadajte Vaše meno"
@@ -102,6 +106,10 @@ const UserInfo = props => {
                     minLength:{
                         value: 2,
                         message: "Meno musí obshahovať apoň dva znaky"
+                    },
+                    maxLength:{
+                        value: 30,
+                        message: "Meno môže obsahovať maximálne 30 znakov"
                     }
                 })}
                 placeholder="Zadajte Vaše priezvisko"
@@ -114,8 +122,9 @@ const UserInfo = props => {
                 <span>E-mailová adresa</span>
                 <input
                 {...register ("email", {
+                    required: "Zadajte Váš e-mail",
                     pattern: {
-                        value:  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                        value: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
                         message: "Nesprávny formát emailovej adresy"
                     }
                 })}
