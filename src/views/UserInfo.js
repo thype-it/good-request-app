@@ -76,7 +76,7 @@ const UserInfo = props => {
                 <input
                 {...register ("firstName",{
                     pattern: {
-                        value: /[^\x00-\x7F]+/,
+                        value: /^([^0-9|<>{}[:"'!?()$%^\.\/<>@#&*\-\_=+\\\]\[]*)$/,
                         message: "Meno nemôže obsahovať číslice a špeciálne znaky"
                     },                   
                     minLength:{

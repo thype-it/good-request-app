@@ -44,13 +44,23 @@ const UserCheck = props => {
     // create new contribution
     const handleSubmit = (e) => {
 
-        e.preventDefault();
-
-        axios.post('https://frontend-assignment-api.goodrequest.dev/api/v1/shelters/contribute', {
+        console.log(state);
+        console.log({
             firstName: firstName,
             lastName: lastName,
             email: email,
-            phone:"0" + phone,
+            phone:phone? "0" + phone : null,
+            value: value || customValue,
+            shelterID: shelterID? shelterID.split(',')[0] : null
+        });
+
+        e.preventDefault();
+
+        axios.post('https://frontend-assignment-api.goodrequest.dev/api/v1/shelters/contribute', {
+            firstName: firstName? firstName : " ",
+            lastName: lastName,
+            email: email,
+            phone:phone? "0" + phone : null,
             value: value || customValue,
             shelterID: shelterID? shelterID.split(',')[0] : null
           })
