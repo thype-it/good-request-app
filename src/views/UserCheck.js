@@ -48,8 +48,6 @@ const UserCheck = props => {
     // create new contribution
     const onSubmit = (e) => {
 
-        e.preventDefault();
-
         axios.post('https://frontend-assignment-api.goodrequest.dev/api/v1/shelters/contribute', {
             firstName: firstName? firstName : " ",
             lastName: lastName,
